@@ -15,14 +15,14 @@ class MyHomePage extends StatelessWidget {
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),
+    ItemHomepage("Tambah Pengalaman", Icons.work, Colors.indigo),
     ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold menyediakan struktur visual dasar halaman.
     return Scaffold(
-      // AppBar menampilkan judul halaman.
+      // AppBar
       appBar: AppBar(
         title: const Text(
           'MyPortfolio',
@@ -38,62 +38,78 @@ class MyHomePage extends StatelessWidget {
       // Drawer menu
       drawer: const LeftDrawer(),
 
-      // Body halaman utama.
-      body: Padding(
+      // Body halaman utama
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Menampilkan tiga kartu informasi secara horizontal.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InfoCard(title: 'NPM', content: npm),
-                InfoCard(title: 'Name', content: nama),
-                InfoCard(title: 'Class', content: kelas),
-              ],
-            ),
+        children: [
 
-            const SizedBox(height: 16.0),
+          // Kartu informasi pemilik portofolio
+          Row(
+            children: [
+              Expanded(
+                child: InfoCard(
+                  title: 'NPM',
+                  content: npm,
+                ),
+              ),
+              Expanded(
+                child: InfoCard(
+                  title: 'Name',
+                  content: nama,
+                ),
+              ),
+              Expanded(
+                child: InfoCard(
+                  title: 'Class',
+                  content: kelas,
+                ),
+              ),
+            ],
+          ),
 
-            // Pesan sambutan dan daftar tombol menu.
-            Center(
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
-                      'Selamat datang di MyPortfolio Mobile!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
+          const SizedBox(height: 32.0),
 
-                  // GridView untuk menampilkan tiga tombol menu.
-                  GridView.count(
-                    primary: true,
-                    padding: const EdgeInsets.all(20),
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    shrinkWrap: true,
-                    children: items.map((ItemHomepage item) {
-                      return ItemCard(item);
-                    }).toList(),
-                  ),
-                ],
+          // Pesan sambutan
+          const Center(
+            child: Text(
+              'Selamat datang di MyPortfolio Mobile!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
               ),
             ),
-          ],
-        ),
+          ),
+
+          const SizedBox(height: 16.0),
+
+          // GridView untuk tombol menu
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final int crossAxisCount =
+                  constraints.maxWidth < 600 ? 2 : 3;
+
+              return GridView.count(
+                primary: false,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(10),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: crossAxisCount,
+                shrinkWrap: true,
+                children: items.map((ItemHomepage item) {
+                  return ItemCard(item);
+                }).toList(),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
 }
 
-// Widget kartu informasi pemilik portofolio.
+// Widget kartu informasi pemilik portofolio
 class InfoCard extends StatelessWidget {
   final String title;
   final String content;
@@ -109,16 +125,22 @@ class InfoCard extends StatelessWidget {
     return Card(
       elevation: 2.0,
       child: Container(
-        width: MediaQuery.of(context).size.width / 3.5,
+        width: double.infinity,
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8.0),
-            Text(content),
+            Text(
+              content,
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
@@ -126,7 +148,7 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-// Model data untuk setiap tombol menu.
+// Model data untuk setiap tombol menu
 class ItemHomepage {
   final String name;
   final IconData icon;

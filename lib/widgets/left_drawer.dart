@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
+import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/experience_form.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -9,6 +12,7 @@ class LeftDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
+          // Header Drawer
           const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.indigo,
@@ -45,6 +49,34 @@ class LeftDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => MyHomePage(),
+                ),
+              );
+            },
+          ),
+
+          // Navigasi ke halaman Add Project
+          ListTile(
+            leading: const Icon(Icons.add_circle_outline),
+            title: const Text('Add Project'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProjectFormPage(),
+                ),
+              );
+            },
+          ),
+
+          // Navigasi ke halaman Add Experience
+          ListTile(
+            leading: const Icon(Icons.work_outline),
+            title: const Text('Add Experience'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ExperienceFormPage(),
                 ),
               );
             },

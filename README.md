@@ -83,3 +83,30 @@ Hot restart diperlukan ketika perubahan kode memengaruhi proses inisialisasi ata
 Dalam pengerjaan proyek ini, saya menggunakan ChatGPT untuk membantu memahami struktur proyek Flutter, termasuk pemisahan kode `main.dart` dan `menu.dart`. Untuk membantu memecahkan sebuah masalah pada flutter
 
 Link ChatGPT: https://chatgpt.com/share/6af45919-45b0-83ec-967b-c2cec2c8d0fc
+
+
+## Tugas 8
+
+1. Navigator.push() digunakan untuk membuka halaman baru dengan menambahkannya ke navigation stack, sehingga halaman sebelumnya tetap tersimpan dan pengguna dapat kembali menggunakan tombol Back. Navigator.pushReplacement() digunakan untuk membuka halaman baru sekaligus menggantikan halaman yang sedang aktif, sehingga halaman sebelumnya tidak lagi berada di posisi teratas navigation stack. Dan Navigator.pop() digunakan untuk menutup halaman atau dialog yang sedang aktif dan kembali ke halaman sebelumnya.
+
+Pada aplikasi MyPortfolio Mobile, Navigator.push() digunakan untuk membuka halaman Add Project dan Add Experience ketika kartu aksi pada halaman Home ditekan. Sementara itu, opsi Home pada Drawer menggunakan Navigator.pushReplacement() untuk membawa pengguna kembali ke halaman utama. Dengan demikian, pengguna dapat berpindah halaman tanpa menumpuk halaman Home yang tidak diperlukan.
+
+2. Scaffold berfungsi sebagai struktur dasar halaman yang menyediakan komponen seperti AppBar, Drawer, dan Body. AppBar digunakan untuk menampilkan judul halaman serta memberikan identitas visual yang konsisten. Sementara itu, Drawer menyediakan navigasi utama agar pengguna dapat berpindah antarhalaman dengan mudah.
+
+Pada aplikasi MyPortfolio Mobile, komponen LeftDrawer digunakan kembali pada halaman Home, Add Project, dan Add Experience. Penggunaan komponen yang sama membuat navigasi lebih konsisten dan mengurangi pengulangan kode. Selain itu, warna indigo digunakan pada AppBar, DrawerHeader, dan tombol Simpan pada formulir sehingga tampilan antarhalaman memiliki identitas warna yang seragam.
+
+3. Tata letak formulir menggunakan Form, SingleChildScrollView, Column, dan Padding. Column digunakan untuk menyusun input formulir secara vertikal agar mudah dibaca dan diisi oleh pengguna. Padding dan SizedBox digunakan untuk memberikan jarak antarwidget sehingga tampilan tidak terlalu rapat.
+
+SingleChildScrollView digunakan agar seluruh isi formulir tetap dapat diakses dengan menggulir layar, terutama ketika ukuran layar terbatas atau keyboard sedang ditampilkan. Dengan demikian, pengguna tetap dapat menjangkau seluruh input dan tombol Simpan tanpa mengalami masalah overflow.
+
+4. Peran GlobalKey<FormState> digunakan untuk mengidentifikasi dan mengakses state dari Form sehingga proses validasi dapat dijalankan dari tombol Simpan. validator merupakan fungsi yang memeriksa apakah nilai yang dimasukkan pengguna sudah sesuai dengan aturan yang ditentukan. Sementara itu, validate() digunakan untuk menjalankan seluruh validator pada input yang berada di dalam Form.
+
+Pada aplikasi MyPortfolio Mobile, ketika tombol Simpan ditekan, _formKey.currentState!.validate() akan memeriksa seluruh input terlebih dahulu. Contohnya, input nama pengalaman yang hanya berisi spasi akan ditolak karena menggunakan trim().isEmpty. Jika validasi berhasil, aplikasi akan menampilkan AlertDialog yang berisi ringkasan data yang dimasukkan pengguna.
+
+Pemilihan jenis input atau keyboard saja belum cukup untuk menjamin bahwa data yang dimasukkan benar. Sebagai contoh, keyboard numerik hanya membantu membatasi jenis karakter yang dapat dimasukkan, tetapi tidak menjamin bahwa nilai tersebut sesuai dengan aturan aplikasi. Oleh karena itu, validator tetap diperlukan untuk memastikan data memenuhi ketentuan sebelum diproses lebih lanjut.
+
+## AI Disclosure
+
+Dalam pengerjaan proyek ini, saya menggunakan ChatGPT sebagai alat bantu untuk memahami materi Flutter Navigation, Layouts, Forms, dan Input Elements. AI digunakan untuk membantu menjelaskan konsep Navigator, penyusunan widget, validasi formulir, penggunaan Date Picker, serta implementasi AlertDialog. Dan seluruh implementasi tetap diperiksa dan diuji secara mandiri dengan menjalankan aplikasi melalui Chrome serta menggunakan perintah flutter analyze.
+
+Link ChatGPT : https://chatgpt.com/share/6b00458d-f2cc-83ec-8ee8-765550d13127
