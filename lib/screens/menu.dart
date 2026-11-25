@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 import 'package:myportofolio_mobile/widgets/project_card.dart';
@@ -26,10 +25,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'MyPortfolio',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -42,27 +38,17 @@ class MyHomePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-
           // Kartu informasi pemilik portofolio
           Row(
             children: [
               Expanded(
-                child: InfoCard(
-                  title: 'NPM',
-                  content: npm,
-                ),
+                child: InfoCard(title: 'NPM', content: npm),
               ),
               Expanded(
-                child: InfoCard(
-                  title: 'Name',
-                  content: nama,
-                ),
+                child: InfoCard(title: 'Name', content: nama),
               ),
               Expanded(
-                child: InfoCard(
-                  title: 'Class',
-                  content: kelas,
-                ),
+                child: InfoCard(title: 'Class', content: kelas),
               ),
             ],
           ),
@@ -74,10 +60,7 @@ class MyHomePage extends StatelessWidget {
             child: Text(
               'Selamat datang di MyPortfolio Mobile!',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.0,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
           ),
 
@@ -86,8 +69,7 @@ class MyHomePage extends StatelessWidget {
           // GridView untuk tombol menu
           LayoutBuilder(
             builder: (context, constraints) {
-              final int crossAxisCount =
-                  constraints.maxWidth < 600 ? 2 : 3;
+              final int crossAxisCount = constraints.maxWidth < 600 ? 2 : 3;
 
               return GridView.count(
                 primary: false,
@@ -114,11 +96,7 @@ class InfoCard extends StatelessWidget {
   final String title;
   final String content;
 
-  const InfoCard({
-    super.key,
-    required this.title,
-    required this.content,
-  });
+  const InfoCard({super.key, required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -130,17 +108,9 @@ class InfoCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8.0),
-            Text(
-              content,
-              textAlign: TextAlign.center,
-            ),
+            Text(content, textAlign: TextAlign.center),
           ],
         ),
       ),

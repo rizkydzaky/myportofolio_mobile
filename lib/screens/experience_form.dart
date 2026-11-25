@@ -5,8 +5,7 @@ class ExperienceFormPage extends StatefulWidget {
   const ExperienceFormPage({super.key});
 
   @override
-  State<ExperienceFormPage> createState() =>
-      _ExperienceFormPageState();
+  State<ExperienceFormPage> createState() => _ExperienceFormPageState();
 }
 
 class _ExperienceFormPageState extends State<ExperienceFormPage> {
@@ -75,7 +74,6 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // === Nama Pengalaman ===
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -226,16 +224,13 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                       if (_startDate == null) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text(
-                              "Tanggal mulai wajib dipilih!",
-                            ),
+                            content: Text("Tanggal mulai wajib dipilih!"),
                           ),
                         );
                         return;
                       }
 
-                      if (_endDate != null &&
-                          _endDate!.isBefore(_startDate!)) {
+                      if (_endDate != null && _endDate!.isBefore(_startDate!)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text(
@@ -258,9 +253,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    'Nama Pengalaman: $_experienceName',
-                                  ),
+                                  Text('Nama Pengalaman: $_experienceName'),
                                   Text('Posisi: $_position'),
                                   Text('Organisasi: $_organization'),
                                   Text(
